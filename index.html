@@ -180,6 +180,17 @@
             font-size: 1rem;
         }
 
+        .contact-item a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-gold);
+            text-decoration: underline;
+        }
+
         /* Map Section */
         .map-container {
             margin-top: 20px;
@@ -199,14 +210,58 @@
             margin-top: 30px;
         }
 
-        footer a {
+        footer button {
+            background: none;
+            border: none;
             color: var(--accent-gold);
-            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
             margin: 0 8px;
+            text-decoration: none;
         }
 
-        footer a:hover {
+        footer button:hover {
             text-decoration: underline;
+        }
+
+        /* Modals for Privacy & Terms */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 650px;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            background: none; border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Responsive Design */
@@ -269,11 +324,11 @@
                 </div>
                 <div class="contact-item">
                     <span>Email Support</span>
-                    <strong>support@abuarhambusiness.com</strong>
+                    <strong><a href="mailto:support@abuarhambusiness.com">support@abuarhambusiness.com</a></strong>
                 </div>
                 <div class="contact-item">
                     <span>Phone Number</span>
-                    <strong>+92 300 7857973</strong>
+                    <strong><a href="tel:+923007857973">+92 300 7857973</a></strong>
                 </div>
                 <div class="contact-item">
                     <span>Registered Office Address</span>
@@ -299,12 +354,44 @@
         <footer>
             <p>&copy; 2026 Abu Arham Business Solutions (SMC-Private) Limited. All Rights Reserved.</p>
             <p style="margin-top: 8px;">
-                <a href="#privacy">Privacy Policy</a> | 
-                <a href="#terms">Terms of Service</a>
+                <button onclick="openModal('privacyModal')">Privacy Policy</button> | 
+                <button onclick="openModal('termsModal')">Terms of Service</button>
             </p>
         </footer>
 
     </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('privacyModal')">&times;</button>
+            <h3>Privacy Policy</h3>
+            <p>At Abu Arham Business Solutions (SMC-Private) Limited, accessible from abuarhambusiness.com, one of our main priorities is the privacy of our visitors. We only collect essential communication data (such as emails or inquiries) to provide e-commerce and digital growth solutions. We do not sell, trade, or transfer your personal data to outside parties.</p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('termsModal')">&times;</button>
+            <h3>Terms of Service</h3>
+            <p>By accessing abuarhambusiness.com, you agree to comply with all applicable business laws and terms related to our digital consulting and e-commerce services provided by Abu Arham Business Solutions (SMC-Private) Limited. All content on this site is protected under registered copyright laws.</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 </html>
